@@ -1,9 +1,12 @@
-import array
-
-def sort(arr):
+def quick_sort(arr):
+    """
+    Quick Sort Algorithm (Divide & Conquer)
+    Time Complexity: O(n log n) average, O(n²) worst
+    Space Complexity: O(log n)
+    """
     if len(arr) <= 1:
-        return list(arr)
-        
+        return arr
+    
     pivot = arr[0]
     left = []
     right = []
@@ -13,27 +16,24 @@ def sort(arr):
             left.append(arr[i])
         else:
             right.append(arr[i])
-            
-    sorted_left = sort(left)
-    sorted_right = sort(right)
     
-    return merge(sorted_left, sorted_right, pivot)
+    sorted_left = quick_sort(left)
+    sorted_right = quick_sort(right)
+    
+    return sorted_left + [pivot] + sorted_right
 
-def merge(left, right, pivot):
-    result = []
-    result.extend(left)
-    result.append(pivot)
-    result.extend(right)
-    return result
 
-n = int(input("Enter the no. of elements of the array: "))
-a = array.array('i', [])
-
-for i in range(n):
-    b = int(input("Enter the element of the array: "))
-    a.append(b)
-
-print("Unsorted array :", a.tolist())
-
-result = sort(a)
-print("Sorted array   :", result)
+# Interactive mode - for manual testing
+if __name__ == "__main__":
+    import array
+    
+    n = int(input("Enter the number of elements: "))
+    a = array.array('i', [])
+    
+    for i in range(n):
+        b = int(input("Enter element: "))
+        a.append(b)
+    
+    print("Original array:", a.tolist())
+    result = quick_sort(a.tolist())
+    print("Sorted array:", result)
