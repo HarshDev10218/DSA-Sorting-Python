@@ -1,17 +1,30 @@
-import array 
-a = array.array('i',[ ])
-n = int(input("Enter the length of array :"))
-temp = 1
-for i in range(n):
-    b = int(input("Enter elements of a :"))
-    a.append(b)
-print(a.tolist())
-for i in range(n-1):
-    for j in range(n-1-i):
-        if a[j] > a[j+1]:
-            temp = a[j]
-            a[j]=a[j+1]
-            a[j+1]=temp
+def bubble_sort(arr):
+    """
+    Bubble Sort Algorithm
+    Time Complexity: O(n²)
+    Space Complexity: O(1)
+    """
+    arr = arr.copy()  # Don't modify original array
+    n = len(arr)
+    
+    for i in range(n - 1):
+        for j in range(n - 1 - i):
+            if arr[j] > arr[j + 1]:
+                # Swap elements
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    
+    return arr
 
-print("Sorted array:", a.tolist())
 
+# Interactive mode - for manual testing
+if __name__ == "__main__":
+    import array
+    a = array.array('i', [])
+    n = int(input("Enter the length of array: "))
+    temp = 1
+    for i in range(n):
+        b = int(input("Enter elements: "))
+        a.append(b)
+    print("Original array:", a.tolist())
+    result = bubble_sort(a.tolist())
+    print("Sorted array:", result)
