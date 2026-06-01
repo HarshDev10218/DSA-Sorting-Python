@@ -1,17 +1,31 @@
-import array
-a = array.array('i',[])
-n = int(input("Enter the number of Elements of array : "))
-temp = 0
-for i in range(n):
-    c = int(input("Enter the element of the array : "))
-    a.append(c)
-print("unsorted_array : ",a.tolist())
+def insertion_sort(arr):
+    """
+    Insertion Sort Algorithm
+    Time Complexity: O(n²)
+    Space Complexity: O(1)
+    """
+    arr = arr.copy()  # Don't modify original array
+    n = len(arr)
+    
+    for i in range(1, n):
+        temp = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > temp:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = temp
+    
+    return arr
 
-for i in range (1,n):
-    temp = a[i]
-    j = i - 1
-    while j>=0 and a[j]>temp:
-        a[j +1] = a[j]
-        j-= 1
-    a[j+1] = temp
-print ("soteed_array :", a.tolist())
+
+# Interactive mode - for manual testing
+if __name__ == "__main__":
+    import array
+    a = array.array('i', [])
+    n = int(input("Enter the number of elements: "))
+    for i in range(n):
+        c = int(input("Enter element: "))
+        a.append(c)
+    print("Original array:", a.tolist())
+    result = insertion_sort(a.tolist())
+    print("Sorted array:", result)
