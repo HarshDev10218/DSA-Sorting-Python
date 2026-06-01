@@ -1,22 +1,29 @@
-import array 
-a = array.array('i',[])
-n = int(input("Enter the length of array :"))
-float = 0
-temp = 1
-for i in range(n):
-    b = int(input("Enter elements of a :"))
-    a.append(b)
-print(a.tolist())
+def selection_sort(arr):
+    """
+    Selection Sort Algorithm
+    Time Complexity: O(n²)
+    Space Complexity: O(1)
+    """
+    arr = arr.copy()  # Don't modify original array
+    n = len(arr)
+    
+    for i in range(n - 1):
+        for j in range(i + 1, n):
+            if arr[j] < arr[i]:
+                # Swap elements
+                arr[i], arr[j] = arr[j], arr[i]
+    
+    return arr
 
-for i in range(n-1):
-    float = 0
-    for j in range(i+1, n):
-        if a[j] < a[i]:
-            temp = a[i]
-            a[i] = a[j]
-            a[j] = temp
-            float+=1
-        if float == n-1:
-            break
 
-print("Sorted array:", a.tolist())
+# Interactive mode - for manual testing
+if __name__ == "__main__":
+    import array
+    a = array.array('i', [])
+    n = int(input("Enter the length of array: "))
+    for i in range(n):
+        b = int(input("Enter elements: "))
+        a.append(b)
+    print("Original array:", a.tolist())
+    result = selection_sort(a.tolist())
+    print("Sorted array:", result)
